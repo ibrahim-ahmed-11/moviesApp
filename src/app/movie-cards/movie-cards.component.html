@@ -1,5 +1,11 @@
 <div class="container">
 
+    <div class="mb-3 mt-3">
+        <div class="alert alert-info text-center" role="alert">
+            <b>Movies page # {{pageID}}</b>
+        </div>
+    </div>
+
     <div class="row">
 
         <div class="col-3 text-center p-3" *ngFor="let item of moviesData">
@@ -36,12 +42,31 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item" [class.disabled]="!(pageID > 1)">
-                <a class="page-link" href="#">Previous</a>
+                <a class="page-link" [routerLink]="['/moviesList',(pageID-1)]">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+            <li class="page-item" *ngIf="(pageID == 1); else notFirst1">
+                <a class="page-link active" [routerLink]="['/moviesList',1]">1</a>
+            </li>
+            <ng-template #notFirst1>
+                <a class="page-link" [routerLink]="['/moviesList',(pageID-1)]">{{pageID-1}}</a>
+            </ng-template>
+
+            <li class="page-item" *ngIf="(pageID == 1); else notFirst2">
+                <a class="page-link" [routerLink]="['/moviesList',2]">2</a>
+            </li>
+            <ng-template #notFirst2>
+                <a class="page-link active" [routerLink]="['/moviesList',pageID]">{{pageID}}</a>
+            </ng-template>
+
+            <li class="page-item" *ngIf="(pageID == 1); else notFirst3">
+                <a class="page-link" [routerLink]="['/moviesList',3]">3</a>
+            </li>
+            <ng-template #notFirst3>
+                <a class="page-link" [routerLink]="['/moviesList',(pageID+1)]">{{pageID+1}}</a>
+            </ng-template>
+
+            <li class="page-item"><a class="page-link" [routerLink]="['/moviesList',(pageID+1)]">Next</a></li>
         </ul>
     </nav>
 
