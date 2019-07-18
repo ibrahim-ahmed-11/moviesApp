@@ -1,0 +1,49 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Welcome to my Movies Site</h1>
+        <p class="lead">This site is based on <a href="https://yts.lt/api" target="_blank">YTS movies API</a>.</p>
+    </div>
+</div>
+
+<div class="container mb-3">
+
+    <div class="mb-3">
+        <div class="alert alert-info text-center" role="alert">
+            <b>Recent uploads</b>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-3 text-center p-3" *ngFor="let item of currentMoviesData">
+
+            <div class="customContainer">
+                <img [src]="item.large_cover_image" alt="poster"
+                    class="img-fluid card-img-top p-1 rounded border image border-info">
+                <div class="overlay">
+                    <p *ngFor="let genre of item.genres">
+                        {{genre}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">{{ item.title }} ({{ item.year }})</h5>
+
+                <h6>
+                    <span *ngFor="let unit of item.torrents">
+                        <a class="badge badge-pill badge-dark text-white m-1" [href]="unit.url">
+                            {{ unit.quality }}
+                        </a>
+                    </span>
+
+                </h6>
+
+                <a [routerLink]="[ '/movie', item.id ]" class="btn btn-primary">Details</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-3 text-center p-3" *ngFor="let item of moviesData">
+
+            <div class="customContainer">
+                <img [src]="item.large_cover_image" alt="poster"
+                    class="img-fluid card-img-top p-1 rounded border image border-info">
+                <div class="overlay">
+                    <p *ngFor="let genre of item.genres">
+                        {{genre}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">{{ item.title }} ({{ item.year }})</h5>
+
+                <h6>
+                    <span *ngFor="let unit of item.torrents">
+                        <a class="badge badge-pill badge-dark text-white m-1" [href]="unit.url">
+                            {{ unit.quality }}
+                        </a>
+                    </span>
+
+                </h6>
+
+                <a [routerLink]="[ '/movie', item.id ]" class="btn btn-primary">Details</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="!(pageID > 1)">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+
+</div>
