@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieCardsComponent } from './movie-cards/movie-cards.component';
 import { HomeComponent } from './home/home.component';
+import { SingleMovieComponent } from './single-movie/single-movie.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
     FooterComponent,
     MovieCardsComponent,
     HomeComponent,
+    SingleMovieComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { HomeComponent } from './home/home.component';
       },
       {
         path: 'movie/:id',
-        component: MovieCardsComponent
+        component: SingleMovieComponent
       }
     ])
   ],

@@ -1,0 +1,106 @@
+<div class="container mt-3 mb-3">
+
+    <div class="row m-1">
+
+        <!-- Image -->
+        <div class="col-3">
+            <div class="text-center">
+                <img [src]="movieDetails.large_cover_image" class="rounded img-fluid img-thumbnail" alt="Poster">
+            </div>
+        </div>
+
+        <!-- Title -->
+        <div class="col-6">
+            <h1 class="display-4">{{movieDetails.title_english}}</h1>
+            <br>
+            <h4>{{movieDetails.year}}</h4>
+            <h4>{{movieDetails.genres[0]}} / {{movieDetails.genres[1]}}</h4>
+
+            <br>
+
+            <h6>Available in :
+                <span *ngFor="let unit of movieDetails.torrents">
+                    <a class="badge badge-pill badge-dark text-white m-1" [href]="unit.url">
+                        {{ unit.quality }}
+                    </a>
+                </span>
+            </h6>
+
+            <div>WEB: ripped earlier from a streaming service, similar quality as BluRay</div>
+
+            <br>
+
+            <a class="icon" href="https://www.imdb.com/title/{{movieDetails.imdb_code}}/" title="IMDb Rating"
+                target="_blank">
+                <img src="../../assets/images/imdb.jfif" alt="IMDb Rating">
+            </a>
+            &nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; {{movieDetails.rating}} &#9733;
+
+            <br>
+
+            MPA Rating &nbsp; : &nbsp;&nbsp; <span *ngIf="!(movieDetails.mpa_rating)">Not rated !</span>
+            {{movieDetails.mpa_rating}}
+
+
+        </div>
+
+        <div class="col-3 row border border-light rounded">
+            <h6 class="col-12 text-center">Similar movies</h6>
+            <a [routerLink]="['/movie', item.id]" class="col-6" *ngFor="let item of similarMovies">
+                <img class="img-fluid" [src]="item.medium_cover_image" alt="Similar movie" [title]="item.title_english">
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container mt-3">
+    <h2>Screenshots : </h2>
+    <div class="row">
+        <div class="col-4 p-1 m-0">
+            <img class="img-fluid" [src]="movieDetails.large_screenshot_image1" alt="Screenshot">
+        </div>
+        <div class="col-4 p-1 m-0">
+            <img class="img-fluid" [src]="movieDetails.large_screenshot_image2" alt="Screenshot">
+        </div>
+        <div class="col-4 p-1 m-0">
+            <img class="img-fluid" [src]="movieDetails.large_screenshot_image3" alt="Screenshot">
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-3">
+
+    <div class="row">
+
+        <div class="col-8">
+            <h2>Description :</h2>
+            <p class="text-justify">{{movieDetails.description_full}}</p>
+        </div>
+
+        <div class="col-4" *ngIf="movieDetails.cast">
+            <h2>Cast : </h2>
+            <div style="height: 80px;" *ngFor="let unit of movieDetails.cast">
+                <img src="https://img.yts.lt/assets/images/actors/thumb/nm{{unit.imdb_code}}.jpg"
+                    class="img-fluid rounded-circle m-1"
+                    onerror="this.src='https://img.yts.lt/assets/images/actors/thumb/default_avatar.jpg';">
+                <span class="ml-2">
+                    <a class="badge badge-light" href="https://www.imdb.com/name/nm{{unit.imdb_code}}/"
+                        target="_blank">{{unit.name}}</a>
+                    as {{unit.character_name}}
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="loader-wrapper" *ngIf="loading">
+    <div class="loader"></div>
+</div>
