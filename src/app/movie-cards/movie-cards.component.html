@@ -46,7 +46,7 @@
             </li>
 
             <li class="page-item" *ngIf="(pageID == 1); else notFirst1">
-                <a class="page-link active" [routerLink]="['/moviesList',1]">1</a>
+                <a class="page-link activeStyle" [routerLink]="['/moviesList',1]">1</a>
             </li>
             <ng-template #notFirst1>
                 <a class="page-link" [routerLink]="['/moviesList',(pageID-1)]">{{pageID-1}}</a>
@@ -56,7 +56,7 @@
                 <a class="page-link" [routerLink]="['/moviesList',2]">2</a>
             </li>
             <ng-template #notFirst2>
-                <a class="page-link active" [routerLink]="['/moviesList',pageID]">{{pageID}}</a>
+                <a class="page-link activeStyle" [routerLink]="['/moviesList',pageID]">{{pageID}}</a>
             </ng-template>
 
             <li class="page-item" *ngIf="(pageID == 1); else notFirst3">
