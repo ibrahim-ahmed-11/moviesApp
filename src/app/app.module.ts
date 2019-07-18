@@ -11,14 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieCardsComponent } from './movie-cards/movie-cards.component';
 import { HomeComponent } from './home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
     MovieCardsComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

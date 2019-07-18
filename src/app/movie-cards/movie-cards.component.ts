@@ -11,12 +11,13 @@ export class MovieCardsComponent implements OnInit {
 
   private moviesData: any;
   private pageID: number = 1;
+  public loading = false;
 
   constructor(private service: MoviesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.route.paramMap.subscribe(params => {
+      this.loading = true;
       this.pageID = +params.get('page');
       this.getPosts();
       this.scrollToTopPage();
@@ -25,10 +26,13 @@ export class MovieCardsComponent implements OnInit {
   }
 
   getPosts() {
+    this.loading = true;
     this.service.getPosts(20, this.pageID).subscribe(response => {
       this.moviesData = response["data"]["movies"];
+      this.loading = false;
     }, error => {
       console.log(error);
+      this.loading = false;
     });
   }
 
