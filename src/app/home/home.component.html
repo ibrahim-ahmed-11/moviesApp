@@ -20,9 +20,9 @@
             <div class="customContainer">
                 <a [routerLink]="[ '/movie', item.id ]">
                     <img [src]="item.large_cover_image" alt="poster"
-                    class="img-fluid card-img-top p-1 rounded border image border-info">
+                        class="img-fluid card-img-top p-1 rounded border image border-info">
                 </a>
-                
+
                 <div class="overlay">
                     <p *ngFor="let genre of item.genres">
                         {{genre}}
@@ -49,4 +49,19 @@
 
     </div>
 
+</div>
+
+
+<div id="loader-wrapper" *ngIf="loading">
+    <div class="loader">
+        <div class="spinner-grow text-muted"></div>
+        <div class="spinner-grow text-primary"></div>
+        <div class="spinner-grow text-success"></div>
+        <div class="spinner-grow text-info"></div>
+        <div class="spinner-grow text-warning"></div>
+        <div class="spinner-grow text-danger"></div>
+        <div class="spinner-grow text-secondary"></div>
+        <div class="spinner-grow text-dark"></div>
+        <div class="spinner-grow text-light"></div>
+    </div>
 </div>

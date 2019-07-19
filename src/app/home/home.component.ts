@@ -13,12 +13,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private service: MoviesService) { }
 
+  public loading = false;
+
   ngOnInit() {
+    this.loading = true;
     this.service.getPosts(4, 1).subscribe(response => {
       this.currentMoviesData = response["data"]["movies"];
+      this.loading = false;
     },
       error => {
         console.log(error);
+        this.loading = false;
       });
   }
 
