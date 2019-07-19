@@ -18,8 +18,11 @@
         <div class="col-3 text-center p-3" *ngFor="let item of currentMoviesData">
 
             <div class="customContainer">
-                <img [src]="item.large_cover_image" alt="poster"
+                <a [routerLink]="[ '/movie', item.id ]">
+                    <img [src]="item.large_cover_image" alt="poster"
                     class="img-fluid card-img-top p-1 rounded border image border-info">
+                </a>
+                
                 <div class="overlay">
                     <p *ngFor="let genre of item.genres">
                         {{genre}}
